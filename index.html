@@ -13,40 +13,45 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body>
-    <h4>SONIA FASHION</h4>
+  <body class="d-flex flex-column py-4">
+    <center>
+        <h4 class="main-font" style="font-size: 5rem">Sonia Fashion</h4>
+        <h1 id=question class="questions"><em>Hola :)<br>Verifiquemos tu estado de salud con algunas preguntas...</em></h1>
+    </center>
 
-    <p class="hints"></p>
-    <div>
-        <h1 class="questions">Hola :) <br><br></h1>
-        <h1 id=question class="questions"><em>Verifiquemos tu estado de salud con estas preguntas ...</em></h1>
-    </div>
-
-    <div>
-        <p>
-            <button id='record'>Start</button>
-            <button id='stopRecord'>Stop</button>
-        </p>
-        <p>
-            <audio id=recordedAudio></audio>
-        </p>
+    <div class="mx-auto my-4">
+        <button id='record' class="btn btn-warning" style="width:100px">Start</button>
     </div>
     <script>
-      const gretting = new Audio('0-saludo.ogg')
-      const name = new Audio('1-nombre.ogg')
-      const id = new Audio('2-cedula.ogg')
-      const age = new Audio('3-edad.ogg')
-      const temperature = new Audio('4-temperatura.ogg')
-      const fever = new Audio('5-fiebre.ogg')
-      const cough = new Audio('6-tos.ogg')
-      const soreThroat = new Audio('7-garganta.ogg')
-      const breathingLost = new Audio('8-respirar.ogg')
-      const malaise = new Audio('9-malestar.ogg')
-      const travel = new Audio('10-viaje.ogg')
-      const touchCovid = new Audio('11-contacto.ogg')
-      const flu = new Audio('12-gripe.ogg')
-      const byeAudio = new Audio('13-chao.ogg')
-      const audios = [name, id, age, temperature, fever, cough, soreThroat, breathingLost, malaise, travel, touchCovid, flu, byeAudio]
+      const gretting = new Audio('./assets/audio/0-saludo.ogg')
+      const name = new Audio('./assets/audio/1-nombre.ogg')
+      const id = new Audio('./assets/audio/2-cedula.ogg')
+      const age = new Audio('./assets/audio/3-edad.ogg')
+      const temperature = new Audio('./assets/audio/4-temperatura.ogg')
+      const fever = new Audio('./assets/audio/5-fiebre.ogg')
+      const cough = new Audio('./assets/audio/6-tos.ogg')
+      const soreThroat = new Audio('./assets/audio/7-garganta.ogg')
+      const breathingLost = new Audio('./assets/audio/8-respirar.ogg')
+      const malaise = new Audio('./assets/audio/9-malestar.ogg')
+      const travel = new Audio('./assets/audio/10-viaje.ogg')
+      const touchCovid = new Audio('./assets/audio/11-contacto.ogg')
+      const flu = new Audio('./assets/audio/12-gripe.ogg')
+      const byeAudio = new Audio('./assets/audio/13-chao.ogg')
+      const audios = [
+        name,
+        id,
+        age,
+        temperature,
+        fever,
+        cough,
+        soreThroat,
+        breathingLost,
+        malaise,
+        travel,
+        touchCovid,
+        flu,
+        byeAudio
+      ]
 
       const whichName = "¿Cúal es tu nombre?"
       const whichId = "¿Cúal es tu número de cédula?"
@@ -61,37 +66,47 @@
       const haveTouchCovid = "¿Has estado en contacto de alguna persona con COVID-19?"
       const feelFlu = "¿Has tenido gripe?"
       const bye = "¡ Muchas gracias y cuídate !"
-      const questions = [whichName, whichId, howAge, whichTemperature, feelFever, feelCough, feelSoreThroat, feelBreathingLost, feelMalaise, haveTravel, haveTouchCovid, feelFlu, bye]
+      const questions = [
+        whichName,
+        whichId,
+        howAge,
+        whichTemperature,
+        feelFever,
+        feelCough,
+        feelSoreThroat,
+        feelBreathingLost,
+        feelMalaise,
+        haveTravel,
+        haveTouchCovid,
+        feelFlu,
+        bye
+      ]
 
       const timeToRecord = 5000
       let audioChunks = []
 
       navigator.mediaDevices.getUserMedia({audio:true})
-      .then(stream => {handlerFunction(stream)})  
+        .then(stream => handlerFunction(stream))
 
       function handlerFunction(stream) {
-          rec = new MediaRecorder(stream);
+          rec = new MediaRecorder(stream)
           rec.ondataavailable = e => {
-              audioChunks.push(e.data);
+              audioChunks.push(e.data)
               if (rec.state == "inactive"){
-                  let blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
-                  recordedAudio.src = URL.createObjectURL(blob);
-                  recordedAudio.controls=true;
-                  recordedAudio.autoplay=true;
+                  const blob = new Blob(audioChunks, {type:'audio/mpeg-3'})
                   saveData(blob)
               }
           }
       }
-      
+
       function saveData(data) {
-          var a = document.createElement("a");
-          document.body.appendChild(a);
-          a.style = "display: none";
-          url = window.URL.createObjectURL(data);
-          a.href = url;
-          a.download = 'audio.mpeg';
-          a.click();
-          //window.URL.revokeObjectURL(url);
+          const a = document.createElement("a");
+          document.body.appendChild(a)
+          a.style = "display: none"
+          url = window.URL.createObjectURL(data)
+          a.href = url
+          a.download = 'audio.mpeg'
+          a.click()
       }
 
       gretting.addEventListener('ended', (e) => {
@@ -124,19 +139,14 @@
 
       byeAudio.addEventListener('ended', (e) => {
         rec.stop()
+        record.style = "display: block"
       });
 
       record.onclick = e => {
-        gretting.play();
+        gretting.play()
+        record.style = "display: none"
       }
 
-      stopRecord.onclick = e => {
-        console.log("I was clicked")
-        record.disabled = false;
-        stop.disabled=true;
-        record.style.backgroundColor = "red"
-        rec.stop();
-      }
     </script>
 
   </body>

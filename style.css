@@ -1,50 +1,17 @@
-#record {
-    background-color: red; /* Green */
-    border-width: medium;
-    border-color: black;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    max-width: 50%;
-    max-height: 15%;
-    border-radius: 50%;
-    left: 100px;
-    right: 100px;
-    position: relative;
+@font-face {
+  font-family: 'BrushScriptStd';
+  src: url('./assets/fonts/BrushScriptStd.ttf') format('truetype'),
+       url('./assets/fonts/BrushScriptStd.woff') format('woff'),
+       url('./assets/fonts/BrushScriptStd.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
-#stopRecord {
-  background-color: green; /* Green */
-  border-width: medium;
-  border-color: black;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  max-width: 50%;
-  max-height: 15%;
-  border-radius: 50%;
-  left: 100px;
-  right: 100px;
-  position: relative;
+
+.main-font {
+    font-family: "BrushScriptStd";
+    color: #f2b80b;
 }
-h2 {
-    left: 100px;
-    position: relative;
-}
-#recordedAudio {
-  left: 100px;
-  right: 100px;
-  position: relative;
-}
-.questions {
-  text-align: center;
+
+body {
+    background-color: #f0f8ff;
 }
